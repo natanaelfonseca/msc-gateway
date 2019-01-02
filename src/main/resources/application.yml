@@ -28,3 +28,11 @@ info:
     name:@project.name@
     description:@project.description@
     version:@project.version@
+
+#Habilitando URls Escondidas do Zuul    
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - '*'
