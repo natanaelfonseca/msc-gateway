@@ -1,0 +1,12 @@
+#Configuações do Microservice
+spring:
+  application:
+    name: zuulservice
+  profiles:
+    active:
+      default
+      
+#Fazendo uso de config server
+  cloud:
+    config:
+      enabled: true
