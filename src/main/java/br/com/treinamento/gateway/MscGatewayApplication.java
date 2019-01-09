@@ -10,12 +10,12 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableZuulProxy
 public class MscGatewayApplication {
-	
-    @LoadBalanced
-    @Bean
-    public RestTemplate getRestTemplate(){
-        return new RestTemplate();
-    }
+
+	@LoadBalanced
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MscGatewayApplication.class, args);

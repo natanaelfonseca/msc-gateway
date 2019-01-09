@@ -13,15 +13,6 @@ eureka:
       healthcheck:
         enabled: true
 
-#mapeamento do zuul
-zuul:
-  prefix:  /api/
-  routes:
-    bookws:  /bookws/**
-    stockws: /stockws/**
-
-# Ex: http://localhost:5555/api/bookws/v1/books
-
 #Configuracoes relacionadas ao Actuator
 info:
   app:
@@ -36,3 +27,37 @@ management:
       exposure:
         include:
         - '*'
+        
+#mapeamento do zuul
+# Ex: http://localhost:5555/api/bookws/v1/books
+
+zuul:
+  routes:
+    prefix:  /api/
+    bookws:  /bookws/**
+    stockws: /stockws/**
+    authserver:      
+      sensitiveHeaders:
+      path: /auth/**
+      stripPrefix: false
+  add-proxy-headers: true
+ 
+security:
+  oauth2:
+    sso:
+      loginPath: /login
+    client:
+      accessTokenUri: http://localhost:8769/auth/oauth/token
+      userAuthorizationUri: /auth/oauth/authorize
+      clientId: msc-clientapp
+      clientSecret: msc123456
+    resource:
+      jwt:
+        keyValue: "345345fsdfsf5345"
+      id: openid
+      serviceId: ${PREFIX:}resource
+
+#Log Level
+logging:
+  level:
+    org.springframework.security: DEBUG

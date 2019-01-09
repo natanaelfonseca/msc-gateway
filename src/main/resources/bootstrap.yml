@@ -1,11 +1,15 @@
 #Configuações do Microservice
 spring:
+  aop:
+    proxy-target-class: true
   application:
     name: zuulservice
   profiles:
     active:
       default
-      
+  main:
+    allow-bean-definition-overriding: true
+   
 #Fazendo uso de config server
   cloud:
     config:
